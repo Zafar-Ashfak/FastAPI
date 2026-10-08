@@ -1,0 +1,52 @@
+{
+  "p001": {
+    "name": "Rahul Verma",
+    "city": "Delhi",
+    "age": "28",
+    "gender": "MALE",
+    "height": "175cm",
+    "weight": "72",
+    "bmi": "23.51",
+    "verdict": "Normal"
+  },
+  "p002": {
+    "name": "Priya Singh",
+    "city": "Bangalore",
+    "age": "26",
+    "gender": "FEMALE",
+    "height": "162cm",
+    "weight": "78",
+    "bmi": "29.72",
+    "verdict": "Overweight"
+  },
+  "p003": {
+    "name": "Arjun Mehta",
+    "city": "Hyderabad",
+    "age": "35",
+    "gender": "MALE",
+    "height": "180cm",
+    "weight": "95",
+    "bmi": "29.32",
+    "verdict": "Overweight"
+  },
+  "p004": {
+    "name": "Sneha Patel",
+    "city": "Ahmedabad",
+    "age": "24",
+    "gender": "FEMALE",
+    "height": "158cm",
+    "weight": "48",
+    "bmi": "19.23",
+    "verdict": "Normal"
+  },
+  "p005": {
+    "name": "Vikram Reddy",
+    "city": "Chennai",
+    "age": "42",
+    "gender": "MALE",
+    "height": "168cm",
+    "weight": "108",
+    "bmi": "38.27",
+    "verdict": "Obese"
+  }
+}
