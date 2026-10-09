@@ -1,11 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Path, HTTPException
 import json
-from pathlib import Path
 app = FastAPI()
 
 def load_data():
-    file_path = Path(__file__).parent / "patients.json"
-    with open(file_path, "r") as file:
+    with open("MediTrack/patients.json", "r") as file:
         data = json.load(file)
 
     return data
@@ -14,8 +12,7 @@ def load_data():
 @app.get("/")
 def home():
     return {
-        "message": "Welcome to MediTrack API",
-        "description": "A secure and scalable REST API for managing patient records and healthcare information."
+        "message": "Welcome to MediTrack API"
     }
 
 @app.get("/about")
@@ -30,3 +27,19 @@ def about():
 def get_patients():
     data = load_data()
     return data
+
+@app.get("/patients/{patient_id}")
+def get_patient(patient_id : str = Path(
+    ..., title="MediTrack", description="ID of the patient in the DB", example="p001"
+)):
+    data = load_data()
+    if patient_id in data:
+        return data[patient_id]
+
+    raise HTTPException(
+        status_code=404,
+        detail=f"Patient with ID {patient_id} not found"
+    )
+
+
+
