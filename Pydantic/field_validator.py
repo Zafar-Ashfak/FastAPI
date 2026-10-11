@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, EmailStr, HttpUrl
+from pydantic import BaseModel, Field, EmailStr, HttpUrl, field_validator
 from typing import List, Dict, Annotated, Optional
 
 class Patient(BaseModel):
@@ -32,6 +32,16 @@ class Patient(BaseModel):
 
 
     # Email field validation
+    @field_validator('email')
+    @classmethod
+    def email_validation(cls, value : str):
+        valid_domains = ["sbi.com", "hdfc.com"]
+        domain_name = value.split("@")[-1]
+
+        if domain_name not in valid_domains:
+            raise ValueError("Invalid email")
+
+        return value
 
 
 def insert_patient_data(patient : Patient):
@@ -45,11 +55,12 @@ def insert_patient_data(patient : Patient):
     print(f"Allergies: {patient.allergies}")
     print(f"Contact Details: {patient.contact_details}")
     print(f"LinkedIn URL: {patient.linkedin_url}")
+    print("\n\n")
 
 
 patient1 = Patient(
     name="Tony Stark",
-    email="tonystark@gmail.com",
+    email="tonystark3000@sbi.com",
     age=65,
     weight=81.32,
     height=179,
@@ -64,4 +75,24 @@ patient1 = Patient(
 )
 
 insert_patient_data(patient1)
+
+
+patient2 = Patient(
+    name="Jane Foster",
+    # email="Janefoster1999@gmail.com", # Raise an error, because domain_name is not in domain_names
+    email="Janefoster1999@hdfc.com", # Code will work, because domain_name is in domain_names
+    age=65,
+    weight=81.32,
+    height=179,
+    bmi=26.86,
+    is_married=True,
+    contact_details={
+        "phone number": "9123456780",
+        "address": "Avengers tower, New york city, (America)"
+    },
+    linkedin_url="https://linkedin.com/tony-stark-3000"
+
+)
+
+insert_patient_data(patient2)
 
