@@ -43,6 +43,12 @@ class Patient(BaseModel):
 
         return value
 
+    # name field validation in uppercase
+    @field_validator('name')
+    @classmethod
+    def uppercase_name(cls, value : str):
+        return value.upper()
+
 
 def insert_patient_data(patient : Patient):
     print(f"Patient Name: {patient.name}")
@@ -55,7 +61,7 @@ def insert_patient_data(patient : Patient):
     print(f"Allergies: {patient.allergies}")
     print(f"Contact Details: {patient.contact_details}")
     print(f"LinkedIn URL: {patient.linkedin_url}")
-    print("\n\n")
+    print("\n")
 
 
 patient1 = Patient(
