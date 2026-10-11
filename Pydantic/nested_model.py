@@ -38,3 +38,7 @@ emp1 = Employee(
 )
 
 get_person_data(emp1)
+
+# exporting the pydantic object
+emp1_dict = emp1.model_dump()
+emp1_json = emp1.model_dump_json()
