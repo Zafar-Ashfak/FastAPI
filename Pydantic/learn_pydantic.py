@@ -1,17 +1,40 @@
-from pydantic import BaseModel, EmailStr, HttpUrl
-from typing import List, Dict, Optional
-
+from pydantic import BaseModel, EmailStr, HttpUrl, Field
+from typing import List, Dict, Optional, Annotated
 
 class Patient(BaseModel):
-    name: str  # required
+    name: Annotated[ # required
+        str,
+        Field(
+            max_length=50,
+            title="Name of the patient",
+            description="Give the full name of the patient",
+            examples=["Ankit Kumar", "John Carter", "Sahil Khan"]
+        )
+    ]
+
     email: EmailStr
-    age: int  # required
-    weight: float  # required
+
+    age: int = Field(gt=0, lt=120)  # required
+
+    weight: Annotated[ # required
+        float,
+        Field(
+            gt=0,
+            lt=120,
+            strict=True
+        )
+    ]
+
     height: int  # required
+
     bmi: float  # required
-    is_married: bool = False  # Default
+
+    is_married: Annotated[bool, Field(default=False, description="Is the patient married")] # Default
+
     allergies: Optional[List[str]] = None  # Optional List
+
     contact_details: Dict[str, str]
+
     linkedin_url : HttpUrl
 
 
@@ -30,7 +53,7 @@ def insert_patient_data(patient: Patient):
 
 
 patient1 = Patient(
-    name="Sifali Khan",
+    name="Anaya Khan",
     email="Sifalikhan1996@gmail.com",
     age=30,
     weight=67.46,
