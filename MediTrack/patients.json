@@ -4,7 +4,7 @@
     "city": "Delhi",
     "age": 28,
     "gender": "MALE",
-    "height": "175cm",
+    "height": 1.75,
     "weight": 72,
     "bmi": 23.51,
     "verdict": "Normal"
