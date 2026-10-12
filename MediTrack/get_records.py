@@ -57,6 +57,7 @@ class Patient(BaseModel):
         else:
             return "Obese"
 
+
 def load_data():
     with open("MediTrack/patients.json", "r") as file:
         data = json.load(file)
