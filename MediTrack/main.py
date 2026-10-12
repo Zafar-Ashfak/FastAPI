@@ -1,4 +1,3 @@
-import uvicorn
 from fastapi import FastAPI, HTTPException, Path, Query
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, EmailStr, Field, computed_field
@@ -68,11 +67,9 @@ def save_data(data):
     with open("MediTrack/patients.json", 'w') as file:
         json.dump(data, file)
 
-
 @app.get("/")
 def home():
     return "Welcome to MediTrack"
-
 
 @app.get("/about")
 def about():
@@ -80,7 +77,6 @@ def about():
         "message": "MediTrack Patient Management System",
         "description": "A backend service designed to create, retrieve, update, and manage patient records through RESTful APIs."
     }
-
 
 @app.get("/patients")
 def get_patients():
@@ -100,7 +96,6 @@ def get_patients():
             detail="Patient data file contains invalid JSON"
         )
 
-
 @app.get("/patients/{patient_id}")
 def get_patient(patient_id: str = Path(
     ...,
@@ -117,7 +112,6 @@ def get_patient(patient_id: str = Path(
         )
 
     return data[patient_id]
-
 
 @app.get("/sort")
 def sort_patients(sort_by: str = Query(
@@ -147,7 +141,6 @@ def sort_patients(sort_by: str = Query(
     sorted_data = sorted(data.values(), key=lambda patient: patient.get(sort_by, 0), reverse=(order == "desc"))
 
     return sorted_data
-
 
 @app.post("/create", status_code=201)
 def create_patient(patient: Patient):
