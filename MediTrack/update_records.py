@@ -4,9 +4,7 @@ from typing import Optional, List, Literal, Annotated
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import JSONResponse
 from MediTrack.create_records import Patient, load_data ,save_data
-
 app = FastAPI()
-
 
 class UpdatePatient(BaseModel):
     name: Annotated[Optional[str], Field(default=None, max_length=50)]
@@ -17,7 +15,6 @@ class UpdatePatient(BaseModel):
     height: Annotated[Optional[float], Field(default=None, gt=0)]
     weight: Annotated[Optional[float], Field(default=None, gt=0)]
     allergies: Annotated[Optional[List[str]], Field(default=None)]
-
 
 # Creating an endpoint to update existing patient's records
 @app.put("/edit/{patient_id}")
