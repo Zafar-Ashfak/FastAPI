@@ -82,7 +82,7 @@ def create_patient(patient: Patient):
             detail=f"Patient with ID {patient.id} already exists"
         )
 
-    data[patient.id] = patient.model_dump(exclude=['id'])
+    data[patient.id] = patient.model_dump(exclude='id')
 
     # save in the json
     save_data(data)
