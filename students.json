@@ -1,0 +1,76 @@
+{
+  "s001": {
+    "name": "Tony Stark",
+    "age": 27,
+    "email": "Tonystark3000@gmail.com",
+    "course": "Generative AI",
+    "skills": [
+      "Python",
+      "FastAPI",
+      "LangChain"
+    ],
+    "is_active": true,
+    "marks": 93.5
+  },
+  "s002": {
+    "name": "Harry Potter",
+    "age": 25,
+    "email": "Harrypotter2002@zohomail.com",
+    "course": "Java Backend",
+    "skills": [
+      "Java",
+      "Spring Boot",
+      "Microservices"
+    ],
+    "is_active": false,
+    "marks": 85.8
+  },
+  "s003": {
+    "name": "Jane Foster",
+    "age": 25,
+    "email": "Janefoster2003@yahoomail.com",
+    "course": "React.js",
+    "skills": [
+      "HTML5",
+      "CSS3",
+      "Javascript"
+    ],
+    "is_active": true,
+    "marks": 90.2
+  },
+  "s004": {
+    "name": "Bruce Wayne",
+    "age": 26,
+    "email": "Brucewayne2007@gmail.com",
+    "course": "Generative AI",
+    "skills": [
+      "Python",
+      "FastAPI",
+      "LangChain"
+    ],
+    "is_active": true,
+    "marks": 82.4
+  },
+  "s005": {
+    "name": "Peter Parker",
+    "age": 23,
+    "email": "Peterparker2016@hotmail.com",
+    "course": "MERN Stack",
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Git",
+      "GitHub",
+      "REST API",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
+    "is_active": false,
+    "marks": 75.5
+  }
+}

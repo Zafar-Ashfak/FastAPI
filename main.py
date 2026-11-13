@@ -1,5 +1,10 @@
 from fastapi import FastAPI
+import json
 app = FastAPI()
+
+def load_data():
+    with open("students.json", "r") as file:
+        return json.load(file)
 @app.get("/")
 def home():
     return "Welcome to My Website! Hello! I'm Zafar Ashfaq. Welcome to my personal website."
@@ -15,3 +20,8 @@ def services():
 @app.get("/contact")
 def contact():
     return "# Get in Touch. Have a question, project idea, or collaboration opportunity?"
+
+@app.get("/students")
+def students():
+    data = load_data()
+    return data
