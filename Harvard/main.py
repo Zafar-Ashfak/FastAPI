@@ -103,3 +103,35 @@ def filter_students(
 
     return filtered_info
 
+@app.get("/sort")
+def sort_students(
+        sort_by : Annotated[str, Query(
+            ..., description="Sort by age or marks",
+            examples=["marks"]
+        )],
+
+        order: Annotated[str, Query(
+            description="Sort order: asc or desc"
+        )] = "asc"
+):
+
+    sort_fields = ["name", "age", "marks"]
+    sort_order = ["asc", "desc"]
+
+    if sort_by not in sort_fields:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid fields, choose from {sort_fields}"
+        )
+
+    if order not in sort_order:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid field, choose asc or desc"
+        )
+
+
+    data = load_data()
+
+    sorted_data = sorted(data.values(), key=lambda student : student.get(sort_by, 0), reverse=order== "desc")
+    return sorted_data
