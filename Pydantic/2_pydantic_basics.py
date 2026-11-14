@@ -1,17 +1,17 @@
 from pydantic import BaseModel
-from typing import List, Dict
+from typing import List, Dict, Optional
 
-class Patient(BaseModel): # All fields are required by default
-    name : str
-    email : str
-    city : str
-    age : int
-    gender : str
-    is_married : bool
-    height : float | int
-    weight : float | int
-    allergies : List[str]
-    contact : Dict[str, str]
+class Patient(BaseModel):
+    name : str # required
+    email : str # required
+    city : str # required
+    age : int # required
+    gender : str # required
+    is_married : Optional[bool] = False # optional
+    height : float | int # required
+    weight : float | int # required
+    allergies : Optional[List[str]] = None # optional
+    contact : Dict[str, str] # required
 
 def insert_patient(patient : Patient):
     print(f"Patient Name: {patient.name}")
@@ -32,7 +32,6 @@ patient1 = Patient(
     city="New York",
     age=24,
     gender="FEMALE",
-    is_married=True,
     height=1.2,
     weight=46.7,
     allergies=["Smoke", "Dust"],
@@ -43,25 +42,24 @@ patient1 = Patient(
 
 )
 
-# patient2 = Patient(
-#     name="Peter Parker",
-#     email="Peterparker2001@gmail.com",
-#     city="New York",
-#     age=26,
-#     gender="MALE",
-#     # is_married=False, required
-#     height=1.8,
-#     weight=68.5,
-#     # allergies=["Pollen"] # Required
-#     contact={
-#         "phone": "80b87654321",
-#         "address": "Rajiv Chowk, New Delhi, India"
-#     }
-# )
+patient2 = Patient(
+    name="Peter Parker",
+    email="Peterparker2001@gmail.com",
+    city="New York",
+    age=26,
+    gender="MALE",
+    is_married=True,
+    height=1.8,
+    weight=68.5,
+    contact={
+        "phone": "80b87654321",
+        "address": "Rajiv Chowk, New Delhi, India"
+    }
+)
 
 print("Patient - 1 records")
 insert_patient(patient1)
 
-# print("\n\nPatient - 2 records")
-# insert_patient(patient2)
+print("\n\nPatient - 2 records")
+insert_patient(patient2)
 
