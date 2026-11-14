@@ -81,11 +81,11 @@ def get_student(
 
 @app.get("/filter")
 def filter_students(
-    course: Annotated[str, Query(
-        ...,
-        description="Enter course to filter data",
-        examples=["Generative AI"]
-    )]
+        course: Annotated[str, Query(
+            ...,
+            description="Enter course to filter data",
+            examples=["Generative AI"]
+        )]
 ):
     data = load_data()
 
@@ -103,9 +103,10 @@ def filter_students(
 
     return filtered_info
 
+
 @app.get("/sort")
 def sort_students(
-        sort_by : Annotated[str, Query(
+        sort_by: Annotated[str, Query(
             ..., description="Sort by age or marks",
             examples=["marks"]
         )],
@@ -114,7 +115,6 @@ def sort_students(
             description="Sort order: asc or desc"
         )] = "asc"
 ):
-
     sort_fields = ["name", "age", "marks"]
     sort_order = ["asc", "desc"]
 
@@ -130,8 +130,34 @@ def sort_students(
             detail="Invalid field, choose asc or desc"
         )
 
-
     data = load_data()
 
-    sorted_data = sorted(data.values(), key=lambda student : student.get(sort_by, 0), reverse=order== "desc")
+    sorted_data = sorted(data.values(), key=lambda student: student.get(sort_by, 0), reverse=order == "desc")
     return sorted_data
+
+
+@app.get("/paginate")
+def pagination(page: Annotated[int, Query(..., description="Enter page number")],
+               limit: Annotated[int, Query(..., description="Enter limit you want to see on each page")]
+               ):
+    data = load_data()
+
+    student_list = []
+
+    # Turning dictionary into a list
+    for student_id, info in data.items():
+        info['id'] = student_id
+        student_list.append(info)
+
+    start = (page - 1) * limit
+    end = start + limit
+
+    page_student = student_list[start: end]
+    total_students = len(student_list)
+
+    return {
+        "page": page,
+        "limit": limit,
+        "total_students": total_students,
+        "page_student": page_student
+    }
