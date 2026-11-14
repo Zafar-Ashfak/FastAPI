@@ -137,8 +137,8 @@ def sort_students(
 
 
 @app.get("/paginate")
-def pagination(page: Annotated[int, Query(..., description="Enter page number")],
-               limit: Annotated[int, Query(..., description="Enter limit you want to see on each page")]
+def pagination(page: Annotated[int, Query(1, ge=1, description="Enter page number")],
+               limit: Annotated[int, Query(2, ge=1, le=100, description="Enter limit you want to see on each page")]
                ):
     data = load_data()
 
