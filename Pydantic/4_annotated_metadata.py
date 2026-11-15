@@ -57,7 +57,7 @@ patient1 = Patient(
     allergies=["Smoke", "Dust"],
     contact={
         "phone": "9123456789",
-        "address": "Arvind Nagar Colony, Tolichowki, Hyderabad"
+        "address": "New York City, America"
     }
 )
 
