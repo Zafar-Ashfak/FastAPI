@@ -19,6 +19,9 @@ patient1 = Patient(**patient_dict)
 # temp = patient1.model_dump()
 # temp = patient1.model_dump(include=['name', 'age'])
 # temp = patient1.model_dump(exclude=['height'])
-temp = patient1.model_dump(exclude_unset=True)
+# temp = patient1.model_dump(exclude_unset=True)
+
+temp = patient1.model_dump_json(exclude_unset=True)
+
 print(temp)
 print(type(temp))
