@@ -1,76 +1,162 @@
 {
   "s001": {
     "name": "Tony Stark",
+    "email": "tony.stark@gmail.com",
+    "roll": 101,
     "age": 27,
-    "email": "Tonystark3000@gmail.com",
     "course": "Generative AI",
-    "skills": [
-      "Python",
-      "FastAPI",
-      "LangChain"
-    ],
-    "is_active": true,
-    "marks": 93.5
+    "marks": 93.5,
+    "skills": ["Python", "FastAPI", "LangChain"],
+    "address": {
+      "city": "New York",
+      "state": "New York",
+      "pincode": "10001",
+      "country": "USA"
+    },
+    "dob": "1999-05-15"
   },
   "s002": {
-    "name": "Harry Potter",
-    "age": 25,
-    "email": "Harrypotter2002@zohomail.com",
-    "course": "Java Backend",
-    "skills": [
-      "Java",
-      "Spring Boot",
-      "Microservices"
-    ],
-    "is_active": false,
-    "marks": 85.8
+    "name": "Peter Parker",
+    "email": "peter.parker@gmail.com",
+    "roll": 102,
+    "age": 22,
+    "course": "Computer Science",
+    "marks": 88.5,
+    "skills": ["Python", "Java", "React"],
+    "address": {
+      "city": "Queens",
+      "state": "New York",
+      "pincode": "11375",
+      "country": "USA"
+    },
+    "dob": "2004-03-12"
   },
   "s003": {
-    "name": "Jane Foster",
-    "age": 25,
-    "email": "Janefoster2003@yahoomail.com",
-    "course": "React.js",
-    "skills": [
-      "HTML5",
-      "CSS3",
-      "Javascript"
-    ],
-    "is_active": true,
-    "marks": 90.2
+    "name": "Bruce Wayne",
+    "email": "bruce.wayne@gmail.com",
+    "roll": 103,
+    "age": 29,
+    "course": "Data Science",
+    "marks": 91.0,
+    "skills": ["Python", "SQL", "Machine Learning"],
+    "address": {
+      "city": "Gotham",
+      "state": "New Jersey",
+      "pincode": "07001",
+      "country": "USA"
+    },
+    "dob": "1997-02-19"
   },
   "s004": {
-    "name": "Bruce Wayne",
+    "name": "Natasha Romanoff",
+    "email": "natasha.romanoff@gmail.com",
+    "roll": 104,
     "age": 26,
-    "email": "Brucewayne2007@gmail.com",
-    "course": "Generative AI",
-    "skills": [
-      "Python",
-      "FastAPI",
-      "LangChain"
-    ],
-    "is_active": true,
-    "marks": 82.4
+    "course": "Cyber Security",
+    "marks": 89.5,
+    "skills": ["Python", "Networking", "Ethical Hacking"],
+    "address": {
+      "city": "Moscow",
+      "state": "Moscow",
+      "pincode": "101000",
+      "country": "Russia"
+    },
+    "dob": "2000-06-22"
   },
   "s005": {
-    "name": "Peter Parker",
-    "age": 23,
-    "email": "Peterparker2016@hotmail.com",
-    "course": "MERN Stack",
-    "skills": [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "React.js",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Git",
-      "GitHub",
-      "REST API",
-      "TypeScript",
-      "Tailwind CSS"
-    ],
-    "is_active": false,
-    "marks": 75.5
+    "name": "Steve Rogers",
+    "email": "steve.rogers@gmail.com",
+    "roll": 105,
+    "age": 28,
+    "course": "Cloud Computing",
+    "marks": 95.0,
+    "skills": ["AWS", "Docker", "Kubernetes"],
+    "address": {
+      "city": "Brooklyn",
+      "state": "New York",
+      "pincode": "11201",
+      "country": "USA"
+    },
+    "dob": "1998-07-04"
+  },
+  "s006": {
+    "name": "Wanda Maximoff",
+    "email": "wanda.maximoff@gmail.com",
+    "roll": 106,
+    "age": 24,
+    "course": "Artificial Intelligence",
+    "marks": 92.0,
+    "skills": ["Python", "Deep Learning", "NLP"],
+    "address": {
+      "city": "Sokovia",
+      "state": "Eastern Europe",
+      "pincode": "10001",
+      "country": "Sokovia"
+    },
+    "dob": "2002-01-10"
+  },
+  "s007": {
+    "name": "Thor Odinson",
+    "email": "thor.odinson@gmail.com",
+    "roll": 107,
+    "age": 30,
+    "course": "Software Engineering",
+    "marks": 86.5,
+    "skills": ["Java", "Spring Boot", "Microservices"],
+    "address": {
+      "city": "Asgard",
+      "state": "Asgard",
+      "pincode": "10007",
+      "country": "Asgard"
+    },
+    "dob": "1996-08-11"
+  },
+  "s008": {
+    "name": "Bruce Banner",
+    "email": "bruce.banner@gmail.com",
+    "roll": 108,
+    "age": 32,
+    "course": "Machine Learning",
+    "marks": 94.5,
+    "skills": ["Python", "TensorFlow", "PyTorch"],
+    "address": {
+      "city": "Dayton",
+      "state": "Ohio",
+      "pincode": "45402",
+      "country": "USA"
+    },
+    "dob": "1994-12-18"
+  },
+  "s009": {
+    "name": "Clint Barton",
+    "email": "clint.barton@gmail.com",
+    "roll": 109,
+    "age": 25,
+    "course": "Web Development",
+    "marks": 84.0,
+    "skills": ["HTML", "CSS", "JavaScript"],
+    "address": {
+      "city": "Waverly",
+      "state": "Iowa",
+      "pincode": "50677",
+      "country": "USA"
+    },
+    "dob": "2001-01-07"
+  },
+  "s010": {
+    "name": "Carol Danvers",
+    "email": "carol.danvers@gmail.com",
+    "roll": 110,
+    "age": 27,
+    "course": "Generative AI",
+    "marks": 97.0,
+    "skills": ["Python", "LangChain", "LangGraph"],
+    "address": {
+      "city": "Boston",
+      "state": "Massachusetts",
+      "pincode": "02108",
+      "country": "USA"
+    },
+    "dob": "1999-04-24"
   }
 }
