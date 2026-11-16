@@ -148,8 +148,7 @@ def pagination(
 
     # Turing dictionary into alist
     for student_id, info in data.items():
-        info["id"] = student_id
-        student_list.append(info)
+        student_list.append({"id": student_id, **info})
 
     start = (page - 1) * limit
     end = start + limit
