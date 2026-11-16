@@ -51,14 +51,14 @@ def get_students():
 # Create a route to see a particular student record using Path parameter
 @app.get("/students/{student_id}")
 def get_student(
-        student_id: Annotated[
-            str,
-            Path(
-                ...,
-                description="Enter ID of the student",
-                examples=["s001"]
-            )
-        ]
+    student_id: Annotated[
+        str,
+        Path(
+            ...,
+            description="Enter ID of the student",
+            examples=["s001"]
+        )
+    ]
 ):
     data = load_data()
 
@@ -67,11 +67,10 @@ def get_student(
     if student is None:
         raise HTTPException(
             status_code=404,
-            detail=f"Student with ID {student_id} not found"
+            detail=f"Student with ID '{student_id}' not found"
         )
 
-    return data[student_id]
-
+    return {"id": student_id, **student}
 
 # Create a route to filter students based on their course
 @app.get("/filter")
@@ -86,9 +85,14 @@ def filter_students(
 ):
     try:
         data = load_data()
-        for student_id, info in data:
-            if info["course"] == course:
-                return data[student_id]
+
+        filtered_info = {}
+
+        for student_id, info in data.items():
+            if info["course"].lower() == course.lower():
+                filtered_info[student_id] = info
+        return filtered_info
+
     except FileNotFoundError:
         raise HTTPException(
             status_code=500,
@@ -96,4 +100,18 @@ def filter_students(
         )
 
 # Create a route to sort student based on name, age, marks in asc or desc
+@app.get("/sort")
+def sort_students(sort_by, order):
+
+    sort_fields = ["name", "roll", "age", "marks"]
+    sort_order = ["asc", "desc"]
+
+    if sort_order not in sort_fields:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid field, choose from {sort_fields}"
+        )
+
+    data = load_data()
+
 # Create a route to paginate student records
