@@ -3,7 +3,7 @@ from typing import Annotated
 from fastapi import FastAPI, HTTPException
 import json
 
-from fastapi.params import Path
+from fastapi.params import Path, Query
 
 app = FastAPI()
 
@@ -44,16 +44,17 @@ def get_students():
     except FileNotFoundError:
         raise HTTPException(
             status_code=500,
-            detail="Student data not found"
+            detail="Students data not found"
         )
+
 
 # Create a route to see a particular student record using Path parameter
 @app.get("/students/{student_id}")
 def get_student(
-        student_id : Annotated[
+        student_id: Annotated[
             str,
             Path(
-    ...,
+                ...,
                 description="Enter ID of the student",
                 examples=["s001"]
             )
@@ -65,12 +66,34 @@ def get_student(
 
     if student is None:
         raise HTTPException(
-            status_code= 404,
+            status_code=404,
             detail=f"Student with ID {student_id} not found"
         )
 
     return data[student_id]
 
+
 # Create a route to filter students based on their course
+@app.get("/filter")
+def filter_students(
+        course: Annotated[
+            str,
+            Query(...,
+                  description="Enter course you want to check for student",
+                  examples=["Python"]
+                  )
+        ]
+):
+    try:
+        data = load_data()
+        for student_id, info in data:
+            if info["course"] == course:
+                return data[student_id]
+    except FileNotFoundError:
+        raise HTTPException(
+            status_code=500,
+            detail="Students data not found"
+        )
+
 # Create a route to sort student based on name, age, marks in asc or desc
 # Create a route to paginate student records
