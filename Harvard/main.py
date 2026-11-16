@@ -1,5 +1,9 @@
+from typing import Annotated
+
 from fastapi import FastAPI, HTTPException
 import json
+
+from fastapi.params import Path
 
 app = FastAPI()
 
@@ -44,6 +48,29 @@ def get_students():
         )
 
 # Create a route to see a particular student record using Path parameter
+@app.get("/students/{student_id}")
+def get_student(
+        student_id : Annotated[
+            str,
+            Path(
+    ...,
+                description="Enter ID of the student",
+                examples=["s001"]
+            )
+        ]
+):
+    data = load_data()
+
+    student = data.get(student_id)
+
+    if student is None:
+        raise HTTPException(
+            status_code= 404,
+            detail=f"Student with ID {student_id} not found"
+        )
+
+    return data[student_id]
+
 # Create a route to filter students based on their course
 # Create a route to sort student based on name, age, marks in asc or desc
 # Create a route to paginate student records
