@@ -51,14 +51,14 @@ def get_students():
 # Create a route to see a particular student record using Path parameter
 @app.get("/students/{student_id}")
 def get_student(
-    student_id: Annotated[
-        str,
-        Path(
-            ...,
-            description="Enter ID of the student",
-            examples=["s001"]
-        )
-    ]
+        student_id: Annotated[
+            str,
+            Path(
+                ...,
+                description="Enter ID of the student",
+                examples=["s001"]
+            )
+        ]
 ):
     data = load_data()
 
@@ -71,6 +71,7 @@ def get_student(
         )
 
     return {"id": student_id, **student}
+
 
 # Create a route to filter students based on their course
 @app.get("/filter")
@@ -99,19 +100,66 @@ def filter_students(
             detail="Students data not found"
         )
 
+
 # Create a route to sort student based on name, age, marks in asc or desc
 @app.get("/sort")
-def sort_students(sort_by, order):
+def sort_students(
+        sort_by: Annotated[
+            str,
+            Query(...,
+                  description="Sort by name, roll, age or marks",
+                  examples=["name : Bruce Wayne", "roll : 101", "age : 21", "marks : 98.6"]
+                  )],
 
+        order: Annotated[str, Query(description="Sort order: asc or desc")] = "asc"
+):
     sort_fields = ["name", "roll", "age", "marks"]
     sort_order = ["asc", "desc"]
 
-    if sort_order not in sort_fields:
+    if sort_by not in sort_fields:
         raise HTTPException(
             status_code=400,
             detail=f"Invalid field, choose from {sort_fields}"
         )
 
+    if order not in sort_order:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid field, choose asc or desc"
+        )
+
     data = load_data()
 
+    sorted_data = sorted(data.values(), key=lambda student: student.get(sort_by, 0), reverse=order == "desc")
+    return sorted_data
+
+
 # Create a route to paginate student records
+@app.get("/paginate")
+def pagination(
+        page: Annotated[int, Query(description="Enter page number you want to see")] = 1,
+
+        limit: Annotated[int, Query(description="Set the limit you want see on each page")] = 3
+):
+
+    data = load_data()
+
+    student_list = []
+
+    # Turing dictionary into alist
+    for student_id, info in data.items():
+        info["id"] = student_id
+        student_list.append(info)
+
+    start = (page - 1) * limit
+    end = start + limit
+
+    page_student = student_list[start: end]
+    total_students = len(student_list)
+
+    return {
+        "page": page,
+        "limit": limit,
+        "total students": total_students,
+        "page_student": page_student
+    }
