@@ -25,15 +25,38 @@ class Student(BaseModel):
 
         return value.title()
 
-def insert_student(s : Student):
-    print(f"Student ID: {s.id}")
-    print(f"Name: {s.name}")
-    print(f"Email: {s.email}")
-    print(f"Roll: {s.roll}")
-    print(f"Age: {s.age}")
-    print(f"Course: {s.course}")
-    print(f"Marks: {s.marks}")
-    print(f"Skills: {s.skills}")
+
+    # compute marks field and create a new field grade
+
+    @computed_field
+    @property
+    def grade(self) -> str:
+        if self.marks >= 90:
+            return "A+"
+        elif self.marks >= 80:
+            return "A"
+        elif self.marks >= 70:
+            return "AB"
+        elif self.marks >= 60:
+            return "B"
+        elif self.marks >= 50:
+            return "BC"
+        elif self.marks >= 40:
+            return "C"
+        else:
+            return "F"
+
+
+def insert_student(student : Student):
+    print(f"Student ID: {student.id}")
+    print(f"Name: {student.name}")
+    print(f"Email: {student.email}")
+    print(f"Roll: {student.roll}")
+    print(f"Age: {student.age}")
+    print(f"Course: {student.course}")
+    print(f"Marks: {student.marks}")
+    print(f"Skills: {student.skills}")
+    print(f"Grade: {student.grade}")
 
 student_dict = {
     "id" : "s001",
