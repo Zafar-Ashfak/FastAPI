@@ -73,3 +73,17 @@ student1 = Student(**student_dict)
 
 insert_student(student1)
 
+# Load student records and validate using Pydantic model
+def load_data():
+    with open("students.json", "r") as file:
+        return json.load(file)
+
+
+data = load_data()
+
+print("\n\nStudents.json file data\n")
+
+for student_id, info in data.items():
+    student = Student(id = student_id, **info)
+    print(student.model_dump())
+
