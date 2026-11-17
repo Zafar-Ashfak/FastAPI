@@ -6,14 +6,7 @@
     "age": 27,
     "course": "Generative AI",
     "marks": 93.5,
-    "skills": ["Python", "FastAPI", "LangChain"],
-    "address": {
-      "city": "New York",
-      "state": "New York",
-      "pincode": "10001",
-      "country": "USA"
-    },
-    "dob": "1999-05-15"
+    "skills": ["Python", "FastAPI", "LangChain"]
   },
   "s002": {
     "name": "Peter Parker",
@@ -22,14 +15,7 @@
     "age": 22,
     "course": "Computer Science",
     "marks": 88.5,
-    "skills": ["Python", "Java", "React"],
-    "address": {
-      "city": "Queens",
-      "state": "New York",
-      "pincode": "11375",
-      "country": "USA"
-    },
-    "dob": "2004-03-12"
+    "skills": ["Python", "Java", "React"]
   },
   "s003": {
     "name": "Bruce Wayne",
@@ -38,14 +24,7 @@
     "age": 29,
     "course": "Data Science",
     "marks": 91.0,
-    "skills": ["Python", "SQL", "Machine Learning"],
-    "address": {
-      "city": "Gotham",
-      "state": "New Jersey",
-      "pincode": "07001",
-      "country": "USA"
-    },
-    "dob": "1997-02-19"
+    "skills": ["Python", "SQL", "Machine Learning"]
   },
   "s004": {
     "name": "Natasha Romanoff",
@@ -54,14 +33,7 @@
     "age": 26,
     "course": "Cyber Security",
     "marks": 89.5,
-    "skills": ["Python", "Networking", "Ethical Hacking"],
-    "address": {
-      "city": "Moscow",
-      "state": "Moscow",
-      "pincode": "101000",
-      "country": "Russia"
-    },
-    "dob": "2000-06-22"
+    "skills": ["Python", "Networking", "Ethical Hacking"]
   },
   "s005": {
     "name": "Steve Rogers",
@@ -70,14 +42,7 @@
     "age": 28,
     "course": "Cloud Computing",
     "marks": 95.0,
-    "skills": ["AWS", "Docker", "Kubernetes"],
-    "address": {
-      "city": "Brooklyn",
-      "state": "New York",
-      "pincode": "11201",
-      "country": "USA"
-    },
-    "dob": "1998-07-04"
+    "skills": ["AWS", "Docker", "Kubernetes"]
   },
   "s006": {
     "name": "Wanda Maximoff",
@@ -86,14 +51,7 @@
     "age": 24,
     "course": "Artificial Intelligence",
     "marks": 92.0,
-    "skills": ["Python", "Deep Learning", "NLP"],
-    "address": {
-      "city": "Sokovia",
-      "state": "Eastern Europe",
-      "pincode": "10001",
-      "country": "Sokovia"
-    },
-    "dob": "2002-01-10"
+    "skills": ["Python", "Deep Learning", "NLP"]
   },
   "s007": {
     "name": "Thor Odinson",
@@ -102,14 +60,7 @@
     "age": 30,
     "course": "Software Engineering",
     "marks": 86.5,
-    "skills": ["Java", "Spring Boot", "Microservices"],
-    "address": {
-      "city": "Asgard",
-      "state": "Asgard",
-      "pincode": "10007",
-      "country": "Asgard"
-    },
-    "dob": "1996-08-11"
+    "skills": ["Java", "Spring Boot", "Microservices"]
   },
   "s008": {
     "name": "Bruce Banner",
@@ -118,14 +69,7 @@
     "age": 32,
     "course": "Machine Learning",
     "marks": 94.5,
-    "skills": ["Python", "TensorFlow", "PyTorch"],
-    "address": {
-      "city": "Dayton",
-      "state": "Ohio",
-      "pincode": "45402",
-      "country": "USA"
-    },
-    "dob": "1994-12-18"
+    "skills": ["Python", "TensorFlow", "PyTorch"]
   },
   "s009": {
     "name": "Clint Barton",
@@ -134,14 +78,7 @@
     "age": 25,
     "course": "Web Development",
     "marks": 84.0,
-    "skills": ["HTML", "CSS", "JavaScript"],
-    "address": {
-      "city": "Waverly",
-      "state": "Iowa",
-      "pincode": "50677",
-      "country": "USA"
-    },
-    "dob": "2001-01-07"
+    "skills": ["HTML", "CSS", "JavaScript"]
   },
   "s010": {
     "name": "Carol Danvers",
@@ -150,13 +87,6 @@
     "age": 27,
     "course": "Generative AI",
     "marks": 97.0,
-    "skills": ["Python", "LangChain", "LangGraph"],
-    "address": {
-      "city": "Boston",
-      "state": "Massachusetts",
-      "pincode": "02108",
-      "country": "USA"
-    },
-    "dob": "1999-04-24"
+    "skills": ["Python", "LangChain", "LangGraph"]
   }
 }
