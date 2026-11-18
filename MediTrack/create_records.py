@@ -37,7 +37,7 @@ class Patient(BaseModel):
 
     weight: Annotated[float, Field(gt=0)]
 
-    allergies: Optional[List[str]] = None
+    allergies: Optional[List[str | None]] = None
 
     # calculating patient's BMI
     @computed_field(return_type=float)
