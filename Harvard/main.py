@@ -62,11 +62,11 @@ class UpdateStudent(BaseModel):
 
 # ********* HELPER METHOD ************
 def load_data():
-    with open("Harvard/students.json", "r") as file:
+    with open("students.json", "r") as file:
         return json.load(file)
 
 def save_data(data):
-    with open("Harvard/students.json", "w") as file:
+    with open("students.json", "w") as file:
         json.dump(data, file, indent=4)
 
 
