@@ -1,92 +1,44 @@
 {
-  "s001": {
-    "name": "Tony Stark",
-    "email": "tony.stark@gmail.com",
-    "roll": 105,
-    "age": 27,
-    "course": "Generative AI",
-    "marks": 93.5,
-    "skills": ["Python", "FastAPI", "LangChain"]
-  },
-  "s002": {
-    "name": "Peter Parker",
-    "email": "peter.parker@gmail.com",
-    "roll": 102,
-    "age": 22,
-    "course": "Computer Science",
-    "marks": 88.5,
-    "skills": ["Python", "Java", "React"]
-  },
-  "s003": {
-    "name": "Bruce Wayne",
-    "email": "bruce.wayne@gmail.com",
-    "roll": 107,
-    "age": 29,
-    "course": "Data Science",
-    "marks": 91.0,
-    "skills": ["Python", "SQL", "Machine Learning"]
-  },
-  "s004": {
-    "name": "Natasha Romanoff",
-    "email": "natasha.romanoff@gmail.com",
-    "roll": 103,
-    "age": 26,
-    "course": "Cyber Security",
-    "marks": 89.5,
-    "skills": ["Python", "Networking", "Ethical Hacking"]
-  },
-  "s005": {
-    "name": "Steve Rogers",
-    "email": "steve.rogers@gmail.com",
-    "roll": 101,
-    "age": 28,
-    "course": "Cloud Computing",
-    "marks": 95.0,
-    "skills": ["AWS", "Docker", "Kubernetes"]
-  },
-  "s006": {
-    "name": "Wanda Maximoff",
-    "email": "wanda.maximoff@gmail.com",
-    "roll": 104,
-    "age": 24,
-    "course": "Artificial Intelligence",
-    "marks": 92.0,
-    "skills": ["Python", "Deep Learning", "NLP"]
-  },
-  "s007": {
-    "name": "Thor Odinson",
-    "email": "thor.odinson@gmail.com",
-    "roll": 106,
-    "age": 30,
-    "course": "Software Engineering",
-    "marks": 86.5,
-    "skills": ["Java", "Spring Boot", "Microservices"]
-  },
-  "s008": {
-    "name": "Bruce Banner",
-    "email": "bruce.banner@gmail.com",
-    "roll": 109,
-    "age": 32,
-    "course": "Machine Learning",
-    "marks": 94.5,
-    "skills": ["Python", "TensorFlow", "PyTorch"]
-  },
-  "s009": {
-    "name": "Clint Barton",
-    "email": "clint.barton@gmail.com",
-    "roll": 108,
-    "age": 25,
-    "course": "Web Development",
-    "marks": 84.0,
-    "skills": ["HTML", "CSS", "JavaScript"]
-  },
-  "s010": {
-    "name": "Carol Danvers",
-    "email": "carol.danvers@gmail.com",
-    "roll": 110,
-    "age": 27,
-    "course": "Generative AI",
-    "marks": 97.0,
-    "skills": ["Python", "LangChain", "LangGraph"]
-  }
+    "S001": {
+        "name": "Peter Parker",
+        "email": "Peterparker2016@gmail.com",
+        "roll": 101,
+        "age": 16,
+        "course": "GenAI",
+        "marks": 88,
+        "skills": [
+            "Python",
+            "ML",
+            "DL"
+        ],
+        "grade": "A"
+    },
+    "S002": {
+        "name": "Jarun Jawed",
+        "email": "Jarunjawed2016@gmail.com",
+        "roll": 102,
+        "age": 11,
+        "course": "JAVA Backend",
+        "marks": 93.18,
+        "skills": [
+            "JAVA",
+            "DSA",
+            "Spring Boot"
+        ],
+        "grade": "A+"
+    },
+    "S003": {
+        "name": "Tony Stark",
+        "email": "Tonystark3000@gmail.com",
+        "roll": 104,
+        "age": 21,
+        "course": "GenAI",
+        "marks": 90,
+        "skills": [
+            "Python",
+            "Numpy",
+            "Pandas"
+        ],
+        "grade": "A+"
+    }
 }

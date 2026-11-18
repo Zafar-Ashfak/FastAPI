@@ -1,17 +1,73 @@
-from typing import Annotated
+from typing import Annotated, List
+from pydantic import BaseModel, Field, EmailStr, field_validator, computed_field
 
 from fastapi import FastAPI, HTTPException
 import json
 
 from fastapi.params import Path, Query
+from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
+
+class Student(BaseModel):
+    id : Annotated[str, Field(description="Unique ID of the student", examples=["S001"])]
+    name : Annotated[str, Field(max_length=50, description="Name of the student")]
+    email : Annotated[EmailStr, Field(examples=["example@gmail.com"])]
+    roll : Annotated[int, Field(ge=1, description="Roll number of the student", examples=[101])]
+    age : Annotated[int, Field(ge=5, lt=100, examples=["21"])]
+    course : Annotated[str, Field(examples=["Generative AI"])]
+    marks : Annotated[float | int, Field(ge=0, le=100, examples=[99.9])]
+    skills : Annotated[List[str], Field(max_length=10)]
+
+    # validate name field to check name contains only alphabet
+
+    @field_validator("name")
+    @classmethod
+    def validate_name(cls, value : str):
+        if not value.replace(" ", "").isalpha():
+            raise ValueError("Name must contain alphabet only")
+
+        return value.title()
+
+
+    # compute marks field and create a new field grade
+
+    @computed_field
+    @property
+    def grade(self) -> str:
+        if self.marks >= 90:
+            return "A+"
+        elif self.marks >= 80:
+            return "A"
+        elif self.marks >= 70:
+            return "AB"
+        elif self.marks >= 60:
+            return "B"
+        elif self.marks >= 50:
+            return "BC"
+        elif self.marks >= 40:
+            return "C"
+        else:
+            return "F"
+
+class UpdateStudent(BaseModel):
+    name: Annotated[str, Field(default= None, max_length=50, description="Name of the student")]
+    email: Annotated[EmailStr, Field(default=None, examples=["example@gmail.com"])]
+    roll: Annotated[int, Field(default=None, ge=1, description="Roll number of the student", examples=[101])]
+    age: Annotated[int, Field(default=None, ge=5, lt=100, examples=["21"])]
+    course: Annotated[str, Field(default=None, examples=["Generative AI"])]
+    marks: Annotated[float | int, Field(default=None, ge=0, le=100, examples=[99.9])]
+    skills: Annotated[List[str], Field(default=None, max_length=10)]
 
 # ********* HELPER METHOD ************
 def load_data():
     with open("Harvard/students.json", "r") as file:
         return json.load(file)
+
+def save_data(data):
+    with open("Harvard/students.json", "w") as file:
+        json.dump(data, file, indent=4)
 
 
 # Create routes for home, about, services and contact
@@ -56,7 +112,7 @@ def get_student(
             Path(
                 ...,
                 description="Enter ID of the student",
-                examples=["s001"]
+                examples=["S001"]
             )
         ]
 ):
@@ -162,3 +218,77 @@ def pagination(
         "total students": total_students,
         "page_student": page_student
     }
+
+@app.post("/create", status_code=201)
+def create_student(student : Student):
+    data = load_data()
+
+    if student.id in data:
+        raise HTTPException(
+            status_code=409,
+            detail=f"Student with ID {student.id} already exists"
+        )
+
+    data[student.id] = student.model_dump(exclude="id")
+
+    save_data(data)
+    raise HTTPException(
+        status_code=201,
+        detail="Student record created successfully"
+    )
+
+@app.put("/update/{student_id}")
+def update_student(
+        student_id : Annotated[str, Path(..., description="Id of the student", examples=["S001"])]
+        ,update_student : UpdateStudent
+):
+
+    data = load_data()
+
+    if student_id not in data:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Student with ID {student_id} not found"
+        )
+
+    updated_student_info = update_student.model_dump(exclude_unset=True)
+
+    exising_student_info = data[student_id]
+
+    for key, value in updated_student_info.items():
+        exising_student_info[key] = value
+
+    student = Student(id=student_id, **exising_student_info)
+
+    data[student_id] = student.model_dump(exclude="id")
+
+    save_data(data)
+
+    return JSONResponse(
+        status_code=200,
+        content="Student updated successfully"
+    )
+
+@app.delete("/delete/{student_id}")
+def delete_student(student_id : Annotated[str, Path(..., description="ID of the student", examples=["S001"])]):
+    data = load_data()
+
+    if student_id not in data:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Student with ID {student_id} not found"
+        )
+
+    del data[student_id]
+
+    save_data(data)
+
+    return JSONResponse(
+        status_code=200,
+        content="Student deleted successfully"
+    )
+
+
+
+
+
