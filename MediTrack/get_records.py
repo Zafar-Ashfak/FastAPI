@@ -6,7 +6,7 @@ app = FastAPI()
 
 
 def load_data():
-    with open("MediTrack/patients.json", "r") as file:
+    with open("patients.json", "r") as file:
         data = json.load(file)
 
     return data
