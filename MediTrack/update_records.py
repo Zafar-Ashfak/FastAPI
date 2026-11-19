@@ -1,9 +1,9 @@
 import uvicorn
 from pydantic import BaseModel, Field, EmailStr
 from typing import Optional, List, Literal, Annotated
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Path
 from fastapi.responses import JSONResponse
-from MediTrack.create_records import Patient, load_data ,save_data
+from create_records import Patient, load_data ,save_data
 app = FastAPI()
 
 class UpdatePatient(BaseModel):
@@ -18,7 +18,10 @@ class UpdatePatient(BaseModel):
 
 # Creating an endpoint to update existing patient's records
 @app.put("/edit/{patient_id}")
-def update_patient(patient_id: str, new_records : UpdatePatient):
+def update_patient(
+        patient_id : Annotated[str, Path(..., description="ID of the patient", examples=["p001"])],
+        new_records : UpdatePatient
+):
 
     data = load_data()
 
@@ -37,12 +40,9 @@ def update_patient(patient_id: str, new_records : UpdatePatient):
     for key, value in update_patient_info.items():
         existing_patient_info[key] = value
 
-    existing_patient_info['id'] = patient_id
-    patient_pydantic_obj = Patient(**existing_patient_info)
+    patient = Patient(id=patient_id, **existing_patient_info)
 
-    existing_patient_info = patient_pydantic_obj.model_dump(exclude='id')
-
-    data[patient_id] = existing_patient_info
+    data[patient_id] = patient.model_dump(exclude='id')
 
     save_data(data)
 
