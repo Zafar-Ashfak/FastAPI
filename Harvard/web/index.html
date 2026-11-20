@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Student registry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header class="top">
+      <div>
+        <h1>Student registry</h1>
+        <p id="summary">Loading students…</p>
+      </div>
+      <button id="addBtn" class="btn primary" type="button">Add student</button>
+    </header>
+
+    <div class="tools">
+      <input id="search" type="search" placeholder="Search by name, email or ID" aria-label="Search students">
+      <select id="courseFilter" aria-label="Filter by course">
+        <option value="">All courses</option>
+      </select>
+      <select id="sort" aria-label="Sort students">
+        <option value="name:asc">Name, A to Z</option>
+        <option value="name:desc">Name, Z to A</option>
+        <option value="marks:desc">Marks, high to low</option>
+        <option value="marks:asc">Marks, low to high</option>
+        <option value="age:asc">Age, youngest first</option>
+        <option value="roll:asc">Roll number</option>
+      </select>
+      <select id="pageSize" aria-label="Rows per page">
+        <option value="5">5 per page</option>
+        <option value="10" selected>10 per page</option>
+        <option value="25">25 per page</option>
+      </select>
+    </div>
+
+    <div id="banner" class="banner" role="alert" hidden></div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>Student</th><th>Course</th>
+            <th class="num">Roll</th><th class="num">Age</th><th class="num">Marks</th>
+            <th>Grade</th><th>Skills</th><th><span class="sr">Actions</span></th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <p id="empty" class="empty" hidden>No students match. Clear the search or course filter.</p>
+    </div>
+
+    <nav class="pager" aria-label="Pagination">
+      <button id="prev" class="btn" type="button">Previous</button>
+      <span id="pageInfo"></span>
+      <button id="next" class="btn" type="button">Next</button>
+    </nav>
+  </main>
+
+  <!-- Add / edit -->
+  <dialog id="formDialog">
+    <form id="studentForm" novalidate>
+      <h2 id="formTitle">Add student</h2>
+      <div class="grid">
+        <label>Student ID
+          <input name="id" required placeholder="S001">
+        </label>
+        <label>Roll number
+          <input name="roll" type="number" min="1" required>
+        </label>
+        <label class="wide">Full name
+          <input name="name" maxlength="50" required placeholder="Letters and spaces only">
+        </label>
+        <label class="wide">Email
+          <input name="email" type="email" required placeholder="name@example.com">
+        </label>
+        <label class="wide">Course
+          <input name="course" list="courseList" required placeholder="Pick one or type a new course">
+          <datalist id="courseList"></datalist>
+        </label>
+        <label>Age
+          <input name="age" type="number" min="5" max="99" required>
+        </label>
+        <label>Marks (0 to 100)
+          <input name="marks" type="number" min="0" max="100" step="0.1" required>
+        </label>
+        <label class="wide">Skills, separated by commas
+          <input name="skills" placeholder="Python, SQL, FastAPI">
+        </label>
+      </div>
+      <p id="formError" class="form-error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button id="cancelForm" class="btn" type="button">Cancel</button>
+        <button id="saveForm" class="btn primary" type="submit">Save student</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Delete -->
+  <dialog id="deleteDialog">
+    <h2>Delete student?</h2>
+    <p id="deleteText"></p>
+    <p id="deleteError" class="form-error" role="alert" hidden></p>
+    <div class="dialog-actions">
+      <button id="cancelDelete" class="btn" type="button">Keep student</button>
+      <button id="confirmDelete" class="btn danger" type="button">Delete student</button>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
