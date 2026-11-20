@@ -2,12 +2,23 @@ from typing import Annotated, List
 from pydantic import BaseModel, Field, EmailStr, field_validator, computed_field
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 import json
 
 from fastapi.params import Path, Query
 from fastapi.responses import JSONResponse
 
 app = FastAPI()
+
+#CORS-> CROSS ORIGIN RESOURCE SHARING
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
 
 
 class Student(BaseModel):
@@ -52,13 +63,13 @@ class Student(BaseModel):
             return "F"
 
 class UpdateStudent(BaseModel):
-    name: Annotated[str, Field(default= None, max_length=50, description="Name of the student")]
-    email: Annotated[EmailStr, Field(default=None, examples=["example@gmail.com"])]
-    roll: Annotated[int, Field(default=None, ge=1, description="Roll number of the student", examples=[101])]
-    age: Annotated[int, Field(default=None, ge=5, lt=100, examples=["21"])]
-    course: Annotated[str, Field(default=None, examples=["Generative AI"])]
-    marks: Annotated[float | int, Field(default=None, ge=0, le=100, examples=[99.9])]
-    skills: Annotated[List[str], Field(default=None, max_length=10)]
+    name: Annotated[str | None, Field(default= None, max_length=50, description="Name of the student")]
+    email: Annotated[EmailStr | None, Field(default=None, examples=["example@gmail.com"])]
+    roll: Annotated[int | None, Field(default=None, ge=1, description="Roll number of the student", examples=[101])]
+    age: Annotated[int | None, Field(default=None, ge=5, lt=100, examples=["21"])]
+    course: Annotated[str | None, Field(default=None, examples=["Generative AI"])]
+    marks: Annotated[float | int | None, Field(default=None, ge=0, le=100, examples=[99.9])]
+    skills: Annotated[List[str] | None, Field(default=None, max_length=10)]
 
 # ********* HELPER METHOD ************
 def load_data():
@@ -193,9 +204,8 @@ def sort_students(
 # Create a route to paginate student records
 @app.get("/paginate")
 def pagination(
-        page: Annotated[int, Query(description="Enter page number you want to see")] = 1,
-
-        limit: Annotated[int, Query(description="Set the limit you want see on each page")] = 3
+        page: Annotated[int, Query(ge=1)] = 1,
+        limit: Annotated[int, Query(ge=1, le=100)] = 3
 ):
 
     data = load_data()
@@ -232,9 +242,10 @@ def create_student(student : Student):
     data[student.id] = student.model_dump(exclude="id")
 
     save_data(data)
-    raise HTTPException(
+
+    return JSONResponse(
         status_code=201,
-        detail="Student record created successfully"
+        content="Student record created successfully"
     )
 
 @app.put("/update/{student_id}")
