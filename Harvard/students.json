@@ -40,5 +40,19 @@
             "Pandas"
         ],
         "grade": "A+"
+    },
+    "S004": {
+        "name": "Sidra Fatima",
+        "email": "Sidrafatima@zohomail.com",
+        "roll": 105,
+        "age": 19,
+        "course": "Machine Learning",
+        "marks": 90,
+        "skills": [
+            "Python",
+            "Numpy",
+            "Pandas"
+        ],
+        "grade": "A+"
     }
 }
